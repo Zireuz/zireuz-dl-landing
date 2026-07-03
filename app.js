@@ -213,44 +213,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initMirrorRows();
 
   // Lógica de Accesibilidad: Alternancia manual de Modo Claro / Oscuro
-const themeToggleBtn = document.getElementById('themeToggle');
-const htmlEl = document.documentElement;
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const htmlEl = document.documentElement;
 
-// 1. Recuperar preferencia guardada localmente
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  htmlEl.setAttribute('data-theme', savedTheme);
-}
-
-// 2. Función unificada para cambiar el tema
-function handleThemeToggle(e) {
-  // Evita el doble click fantasma en pantallas táctiles híbridas
-  if (e) e.preventDefault();
-
-  // Detectamos el tema actual mirando el atributo (o el esquema del sistema si está vacío)
-  const currentTheme = htmlEl.getAttribute('data-theme') || 
-    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-
-  if (currentTheme === 'light') {
-    htmlEl.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    htmlEl.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
+  // Recuperar la preferencia del usuario guardada localmente si existe
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    htmlEl.classList.add('light-theme');
+  } else if (savedTheme === 'dark') {
+    htmlEl.classList.add('dark-theme'); // Sobrescribe la detección automática si prefiere oscuro
   }
 
-  // Forzamos el recálculo del alto en los módulos interactivos si es necesario
-  if (typeof mirrorRows !== 'undefined') {
-    mirrorRows.forEach(sizeMirrorSwap);
-  }
-}
-
-// 3. Vinculación limpia de eventos para Escritorio y Mobile
-if (themeToggleBtn) {
-  // Escucha click clásico (Escritorio)
-  themeToggleBtn.addEventListener('click', handleThemeToggle);
-  
-  // Escucha touchstart inmediato (Mobile) sin retraso de 300ms
-  themeToggleBtn.addEventListener('touchstart', handleThemeToggle, { passive: false });
-}
+  themeToggleBtn.addEventListener('click', () => {
+    // Si ya está activo el modo claro, cambiamos a oscuro
+    if (htmlEl.classList.contains('light-theme') || 
+       (!htmlEl.classList.contains('dark-theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      htmlEl.classList.remove('light-theme');
+      htmlEl.classList.add('dark-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      // De lo contrario, activamos el modo claro
+      htmlEl.classList.remove('dark-theme');
+      htmlEl.classList.add('light-theme');
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // Forzamos el recálculo del alto en los módulos interactivos "mirror-rows" si es necesario
+    if (typeof mirrorRows !== 'undefined') {
+      mirrorRows.forEach(sizeMirrorSwap);
+    }
+  });
 });

@@ -345,16 +345,3 @@ html.light-theme .whatsapp-float:hover {
     display: none;
   }
 }
-#themeToggle {
-  /* ... tus estilos actuales ... */
-  min-width: 44px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  touch-action: manipulation; /* Elimina el retraso de 300ms de los navegadores móviles */
-}
-#themeToggle * {
-  pointer-events: none;
-}
