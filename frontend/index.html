@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zireuz || Digital Lab — Software a medida y automatizaciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <button type="button" class="logo" data-target="#inicio" aria-label="Ir al inicio">ZIREUZ<span class="dot">//</span>DIGITAL LAB</button>
+    <div class="nav-links">
+      <button type="button" class="navlink" data-target="#manifiesto">Filosofía</button>
+      <button type="button" class="navlink" data-target="#modulos">Módulos</button>
+      <button type="button" class="navlink" data-target="#infraestructura">Infraestructura</button>
+      <button type="button" class="navlink" data-target="#enfoque">Enfoque</button>
+    </div>
+    <div class="nav-right">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema de accesibilidad" style="font-family: var(--mono); font-size: 16px; padding: 4px 8px;">🌓</button>
+      
+      <button type="button" class="nav-cta" data-target="#cta">Agendar demo</button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <button type="button" class="mobilelink" data-target="#manifiesto">Filosofía</button>
+    <button type="button" class="mobilelink" data-target="#modulos">Módulos</button>
+    <button type="button" class="mobilelink" data-target="#infraestructura">Infraestructura</button>
+    <button type="button" class="mobilelink" data-target="#enfoque">Enfoque</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="wrap">
+    <section class="hero" id="inicio" style="padding-top:3em;">
+      <div>
+        <h1>Automatiza tu operación con <span class="accent">software de alto impacto.</span></h1>
+        <p class="sub">Diseñamos y programamos plataformas web a medida y flujos automatizados que eliminan las tareas manuales en tu negocio.</p>
+        <div class="cta-row">
+          <button type="button" class="btn-primary" data-target="#cta">Agendar una demo →</button>
+          <button type="button" class="btn-outline" data-target="#modulos">Explorar módulos</button>
+        </div>
+        <div class="trust-row">
+          <span>Integración nativa de pasarelas de pago</span>
+          <span>Soporte directo uno a uno</span>
+          <span>Propiedad absoluta del código</span>
+        </div>
+      </div>
+
+      <div class="term-card">
+        <div class="term-bar">
+          <div class="tdot"></div><div class="tdot"></div><div class="tdot"></div>
+          <span class="tlabel">zireuz@core — panel operativo</span>
+        </div>
+        <div class="term-body" id="termBody">
+          <div class="term-line" data-tag="OK"><span class="tag-ok">$</span><span>Sincronizando base de datos… <span class="term-cursor" id="cursor"></span></span></div>
+        </div>
+        <div class="chart-row" id="chartRow">
+          <div class="bar" style="height:38%"></div>
+          <div class="bar" style="height:62%"></div>
+          <div class="bar" style="height:48%"></div>
+          <div class="bar" style="height:80%"></div>
+          <div class="bar" style="height:56%"></div>
+          <div class="bar" style="height:90%"></div>
+          <div class="bar" style="height:70%"></div>
+        </div>
+        <div class="floating-tags" id="floatTags">
+          <div class="ftag">Base de Datos Sincronizada • MongoDB Atlas</div>
+          <div class="ftag">Pago Procesado • Webhook Mercado Pago Activo</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MANIFIESTO -->
+  <section id="manifiesto">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">FILOSOFÍA DE DESARROLLO</div>
+        <h2>Tu negocio no puede crecer sobre estructuras prestadas.</h2>
+      </div>
+      <div class="manifesto-grid">
+        <div class="manifesto-text reveal">
+          <p>Escalar tu empresa con plantillas genéricas es un riesgo de lentitud y vulnerabilidad.</p>
+          <p><span class="highlight">En Zireuz construimos soluciones modulares con arquitectura limpia y código puro.</span> Diseñamos software que te pertenece al 100%, optimizado para la velocidad y la estabilidad de tu negocio.</p>
+        </div>
+        <div class="pillars">
+          <div class="pillar reveal">
+            <div class="picon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+            </div>
+            <div>
+              <h3>Rendimiento y velocidad nativa</h3>
+              <p>Eliminamos la sobrecarga de código innecesario. Tu aplicación carga al instante, mejorando la experiencia del usuario y el SEO técnico desde la raíz.</p>
+            </div>
+          </div>
+          <div class="pillar reveal">
+            <div class="picon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b7fff" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            </div>
+            <div>
+              <h3>Cero dependencias, cero comisiones</h3>
+              <p>Desarrollamos herramientas que son de tu propiedad. Sin plugins de terceros que se rompen en cada actualización y sin comisiones ocultas por venta.</p>
+            </div>
+          </div>
+          <div class="pillar reveal">
+            <div class="picon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 8.7 8 9 4.6-.3 8-4 8-9V6l-8-3z"/></svg>
+            </div>
+            <div>
+              <h3>Persistencia de datos y seguridad</h3>
+              <p>Diseñamos bases de datos sólidas y modulares, listas para soportar el aumento en tu volumen de operaciones, manteniendo tu información blindada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULOS -->
+  <section id="modulos">
+    <div class="wrap">
+      <div class="section-head right reveal">
+        <div class="eyebrow">ECOSISTEMA DE SOLUCIONES</div>
+        <h2>Arquitectura técnica diseñada para ordenar y escalar tu negocio.</h2>
+        <p>No creamos código al azar. Desarrollamos módulos específicos, robustos y conectados entre sí, enfocados en maximizar la eficiencia y el control de tu infraestructura digital.</p>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-card reveal">
+          <span class="module-tag">module.core</span>
+          <h3>Zireuz Core Dashboards</h3>
+          <div class="module-focus">El monitor operativo • Control y datos</div>
+          <p>Paneles de administración internos y sistemas de gestión optimizados para entornos profesionales. Centraliza las métricas de tu empresa en una sola interfaz limpia.</p>
+          <ul class="module-points">
+            <li><span class="li-content"><strong>Visualización en tiempo real:</strong><span>KPIs clave sin configuraciones complejas.</span></span></li>
+            <li><span class="li-content"><strong>Gestión centralizada:</strong><span>filtros avanzados para históricos al instante.</span></span></li>
+            <li><span class="li-content"><strong>Permisos avanzados:</strong><span>controla qué ve y edita cada miembro del equipo.</span></span></li>
+          </ul>
+        </div>
+
+        <div class="module-card reveal">
+          <span class="module-tag">module.commerce</span>
+          <h3>Zireuz Commerce Engine</h3>
+          <div class="module-focus">El motor de conversión • Ventas sin comisiones</div>
+          <p>Plataformas de comercio electrónico a medida (MVP avanzado) para negocios que superaron las limitaciones de las plantillas tradicionales.</p>
+          <ul class="module-points">
+            <li><span class="li-content"><strong>Pasarelas nativas:</strong><span>conexión directa con Mercado Pago v2.</span></span></li>
+            <li><span class="li-content"><strong>Webhooks automatizados:</strong><span>pagos procesados y backend actualizado sin intervención humana.</span></span></li>
+            <li><span class="li-content"><strong>Persistencia absoluta:</strong><span>carritos y datos en MongoDB Atlas.</span></span></li>
+          </ul>
+        </div>
+
+        <div class="module-card reveal">
+          <span class="module-tag">module.workflow</span>
+          <h3>Zireuz Workflow Automation</h3>
+          <div class="module-focus">La infraestructura autónoma • Eficiencia</div>
+          <p>Ecosistemas de automatización a medida que conectan tus herramientas y lógicas de backend para eliminar tareas manuales repetitivas.</p>
+          <ul class="module-points">
+            <li><span class="li-content"><strong>Sincronización en tiempo real:</strong><span>bases de datos, pagos y notificaciones conectados.</span></span></li>
+            <li><span class="li-content"><strong>Control remoto:</strong><span>arquitectura inspirada en nuestro ecosistema open-source MacroDev.</span></span></li>
+            <li><span class="li-content"><strong>Cero errores manuales:</strong><span>el backend se encarga de lo crítico.</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRAESTRUCTURA -->
+  <section id="infraestructura">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">INFRAESTRUCTURA Y SEGURIDAD</div>
+        <h2>Respaldado por tecnología cloud de nivel mundial.</h2>
+        <p>Cada línea de código y cada base de datos se despliega sobre infraestructura global de alta disponibilidad, sin que tengas que administrar servidores.</p>
+      </div>
+      <div class="infra-grid">
+        <div class="infra-card reveal">
+          <div class="ilabel">persistencia</div>
+          <h3>MongoDB Atlas</h3>
+          <p>Clústeres cloud de alto rendimiento con respaldos automáticos y recuperación inmediata ante fallos.</p>
+        </div>
+        <div class="infra-card reveal">
+          <div class="ilabel">seguridad</div>
+          <h3>Cifrado nivel bancario</h3>
+          <p>Toda la lógica de backend y el procesamiento de datos viaja cifrado, en entornos y protocolos validados.</p>
+        </div>
+        <div class="infra-card reveal">
+          <div class="ilabel">disponibilidad</div>
+          <h3>Alta velocidad continua</h3>
+          <p>Servidores optimizados para baja latencia regional. Tu plataforma responde fluida ante picos de tráfico.</p>
+        </div>
+        <div class="infra-card reveal">
+          <div class="ilabel">propiedad</div>
+          <h3>Control técnico total</h3>
+          <p>Sin plataformas cerradas de terceros: el código y las bases de datos son tu propiedad absoluta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENFOQUE -->
+  <section id="enfoque">
+    <div class="wrap">
+      <div class="section-head right reveal">
+        <div class="eyebrow">NUESTRO ENFOQUE</div>
+        <h2>Menos jerga técnica. Más resultados reales.</h2>
+        <p>Traducimos la complejidad de la arquitectura a lo que verdaderamente impacta en la rentabilidad de tu empresa.</p>
+      </div>
+      <div class="mirror-list">
+        <div class="mirror-row reveal" tabindex="0" role="button" aria-label="Traducir jerga técnica a beneficio">
+          <div class="mirror-hint">Pasa el cursor para traducir</div>
+          <div class="mirror-swap">
+            <div class="mirror-jargon">"El webhook del backend falló al procesar el JSON en el endpoint de Mercado Pago."</div>
+            <div class="mirror-benefit">Tus cobros se procesan de forma segura y el sistema te avisa de inmediato si hay algún problema con el banco.</div>
+          </div>
+        </div>
+        <div class="mirror-row reveal" tabindex="0" role="button" aria-label="Traducir jerga técnica a beneficio">
+          <div class="mirror-hint">Pasa el cursor para traducir</div>
+          <div class="mirror-swap">
+            <div class="mirror-jargon">"Implementamos persistencia de datos relacionales en clusters distribuidos de MongoDB Atlas."</div>
+            <div class="mirror-benefit">Tu inventario y tus ventas quedan guardados al instante. No perderás un solo registro, incluso si el cliente pierde su conexión.</div>
+          </div>
+        </div>
+        <div class="mirror-row reveal" tabindex="0" role="button" aria-label="Traducir jerga técnica a beneficio">
+          <div class="mirror-hint">Pasa el cursor para traducir</div>
+          <div class="mirror-swap">
+            <div class="mirror-jargon">"Optimizamos el entorno local mediante scripts modulares automatizados."</div>
+            <div class="mirror-benefit">Automatizamos las tareas repetitivas de tu operación para que tu equipo trabaje más rápido y sin errores humanos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+ <section id="cta" class="final-cta">
+    <div class="wrap">
+      <h2>Convierte la infraestructura de tu negocio en una ventaja competitiva.</h2>
+      <p>Agenda una sesión de diagnóstico técnico de 30 minutos. Analizaremos tu operación actual y te mostraremos, con lógica clara, cómo el software a medida de Zireuz puede automatizar tus flujos y asegurar tus datos.</p>
+      <!--
+      <form id="formCita" class="form-citas-lab">
+        <div class="form-group-lab">
+          <label for="nombre">Nombre / Empresa</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza / Lab Ink">
+        </div>
+
+        <div class="form-grid-lab">
+          <div class="form-group-lab">
+            <label for="email">Email de contacto</label>
+            <input type="email" id="email" name="email" required placeholder="nombre@empresa.com">
+          </div>
+          <div class="form-group-lab">
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+57 300 000 0000">
+          </div>
+        </div>
+
+        <div class="form-group-lab">
+          <label for="fechaHora">Fecha y hora propuesta</label>
+          <input type="datetime-local" id="fechaHora" name="fechaHora" required>
+        </div>
+
+        <div class="form-group-lab">
+          <label for="notas">Breve descripción del proyecto (Opcional)</label>
+          <textarea id="notas" name="notas" rows="3" placeholder="Ej. Necesito un sistema de e-commerce a medida con persistencia de datos y pasarela sin comisiones..."></textarea>
+        </div>
+
+        <div class="cta-row">
+          <button type="submit" class="btn-primary">Confirmar demo técnica →</button>
+          <a href="https://wa.me/tu_numero_aqui" target="_blank" rel="noopener noreferrer" class="btn-outline" style="text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center;">
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+      </form> -->
+<div class="cta-row">
+          <a href="mailto:willdevmor@gmail.com?subject=Solicitud%20de%20Diagn%C3%B3stico%20T%C3%A9cnico%20-%20Zireuz&body=Hola%20Zireuz%20Digital%20Lab%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20para%20analizar%20la%20infraestructura%20de%20mi%20negocio." class="btn-primary">
+            Agendar una demo técnica →
+          </a>
+          <a href="https://wa.me/573156374818?text=Hola,%20quiero%20más%20información" target="_blank" rel="noopener noreferrer" class="btn-outline" style="text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center;">
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+      <div class="microtext">Hablarás directamente con el desarrollador a cargo de la arquitectura de tu proyecto, sin intermediarios.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-container">
+    <div class="footer-copyright">
+      &copy; 2026 Zireuz || Digital Lab. Todos los derechos reservados.
+    </div>
+    <div class="footer-socials">
+      <a href="https://linkedin.com/in/zireuz-software" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visitar perfil de LinkedIn de Zireuz">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
+      
+      <a href="https://instagram.com/zireuz_digitallab/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visitar perfil de Instagram de Zireuz">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/573156374818?text=Hola%20Zireuz%2C%20vi%20tu%20landing%20page%20y%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20software%20a%20medida." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Escríbenos por WhatsApp">
+  <span class="wa-text">Escríbenos a WhatsApp → </span>
+  <div class="wa-icon-container">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.742.002-2.602-1.005-5.05-2.839-6.887-1.834-1.838-4.277-2.851-6.884-2.852-5.443 0-9.867 4.371-9.871 9.742-.001 1.748.465 3.454 1.348 4.965L1.93 22.107l4.717-1.727zm9.436-5.833c-.263-.132-1.562-.771-1.802-.859-.24-.087-.414-.132-.589.132-.174.264-.674.859-.826 1.034-.152.176-.304.198-.567.065-.263-.132-1.11-.41-2.114-1.307-.783-.7-1.31-1.564-1.464-1.828-.154-.264-.016-.407.116-.539.118-.119.263-.308.393-.462.132-.154.176-.264.264-.44.088-.176.044-.33-.022-.462-.066-.132-.589-1.42-.806-1.946-.213-.518-.446-.448-.609-.456-.157-.008-.337-.01-.518-.01-.18 0-.476.067-.724.337-.249.271-.951.931-.951 2.27 0 1.339.973 2.632 1.108 2.812.135.179 1.914 2.923 4.637 4.101.648.281 1.153.448 1.546.573.651.207 1.242.177 1.709.107.52-.078 1.562-.639 1.781-1.255.219-.616.219-1.144.153-1.255-.066-.111-.24-.176-.503-.308z"/>
+    </svg>
+  </div>
+</a>
+
+<script src="app.js" defer></script>
+
+</body>
+</html>

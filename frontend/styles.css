@@ -1,0 +1,347 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM, RESET & ACCESIBILIDAD (SOPORTE DE TEMA CLARO)
+   ========================================================================== */
+:root {
+  /* Paleta Oscura (Por Defecto) */
+  --bg: #0f1420; --bg-panel: #161d2e; --bg-panel-2: #1c2438;
+  --border: #2a3348; --border-soft: #212a3d;
+  --text: #e9edf5; --text-muted: #8a94ab; --text-dim: #5c6579;
+  --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
+  --radius: 0.875rem;
+  --mono: 'JetBrains Mono', monospace; --display: 'Space Grotesk', sans-serif; --body: 'Inter', sans-serif;
+}
+
+/* Inyección Automática de Modo Claro por Accesibilidad */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f7fa;          /* Fondo principal claro y descansado */
+    --bg-panel: #ffffff;    /* Tarjetas puras blancas para contraste */
+    --bg-panel-2: #eef2f7;  /* Paneles secundarios o cabeceras de terminal */
+    --border: #ccd4e0;      /* Bordes visibles de alto contraste */
+    --border-soft: #e2e8f0; /* Separadores sutiles */
+    --text: #0f172a;        /* Texto principal casi negro (máxima legibilidad) */
+    --text-muted: #475569;  /* Texto secundario gris oscuro legible */
+    --text-dim: #64748b;    /* Textos internos o detalles */
+    --emerald: #059669;     /* Esmeralda oscurecido para cumplir ratios de contraste WCAG en fondo claro */
+    --cobalt: #2563eb;      /* Azul cobalto accesible */
+    --terracotta: #c2410c;  /* Terracota accesible */
+  }
+  
+  /* Ajuste específico de contraste para botones sobre fondo claro */
+  .btn-primary { color: #ffffff !important; }
+  .term-bar .tdot { background: #cbd5e1; }
+}
+
+/* Soporte manual si se añade la clase .light-theme a la etiqueta <html> */
+html.light-theme {
+  --bg: #f4f7fa; --bg-panel: #ffffff; --bg-panel-2: #eef2f7;
+  --border: #ccd4e0; --border-soft: #e2e8f0;
+  --text: #0f172a; --text-muted: #475569; --text-dim: #64748b;
+  --emerald: #059669; --cobalt: #2563eb; --terracotta: #c2410c;
+}
+html.light-theme .btn-primary { color: #ffffff !important; }
+html.light-theme .term-bar .tdot { background: #cbd5e1; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; min-width: 20rem; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; font-size: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+img, svg { display: block; }
+
+:focus-visible { outline: 0.125rem solid var(--emerald); outline-offset: 0.2rem; border-radius: 0.25rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ==========================================================================
+   2. LAYOUT COMPARTIDO & ESTRUCTURA
+   ========================================================================== */
+.wrap { max-width: 73.75rem; min-width: 20rem; margin: 0 auto; padding: 0 2rem; }
+@media (max-width: 40rem) { .wrap { padding: 0 1.25rem; } }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+section { padding: 5.5rem 0; }
+section + section { border-top: 0.06rem solid var(--border-soft); }
+
+.section-head { max-width: 40rem; margin-bottom: 3.25rem; text-align: left; }
+.section-head h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.15; margin-bottom: 1rem; }
+.section-head p { color: var(--text-muted); font-size: 1rem; }
+
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head.center .eyebrow { justify-content: center; }
+.section-head.right { margin-left: auto; margin-right: 0; text-align: right; }
+.section-head.right .eyebrow { justify-content: flex-end; }
+
+.reveal { opacity: 0; transform: translateY(1.1rem); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   3. COMPONENTES: BOTONES & ATRIBUTOS
+   ========================================================================== */
+.eyebrow { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--emerald); display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1.1rem; }
+.eyebrow::before { content: ""; width: 0.55em; height: 0.55em; background: var(--emerald); border-radius: 50%; box-shadow: 0 0 0 0.25em rgba(52, 211, 153, 0.18); flex-shrink: 0; }
+
+.btn-primary, .btn-outline { font-family: var(--mono); font-weight: 500; font-size: 0.875rem; padding: 1em 1.75em; border-radius: 0.65em; display: inline-flex; align-items: center; }
+.btn-primary { background: var(--emerald); color: #0a1510; gap: 0.55em; transition: transform 0.15s, box-shadow 0.15s; }
+.btn-primary:hover { transform: translateY(-0.15em); box-shadow: 0 0.7rem 2rem rgba(52, 211, 153, 0.28); }
+.btn-outline { color: var(--text); border: 0.07em solid var(--border); transition: border-color 0.15s, background 0.15s; }
+.btn-outline:hover { border-color: var(--cobalt); background: rgba(91, 127, 255, 0.06); }
+
+/* ==========================================================================
+   4. NAVEGACIÓN (HEADER & MENÚS)
+   ========================================================================== */
+header { position: sticky; top: 0; z-index: 100; background: var(--bg-navbar); backdrop-filter: blur(0.6rem); border-bottom: 0.06rem solid var(--border-soft); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 2rem; max-width: 73.75rem; margin: 0 auto; line-height: 1.2; }
+.logo { font-family: var(--mono); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s; }
+.logo:hover { opacity: 0.8; }
+.logo .dot { color: var(--emerald); }
+.nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--text-muted); }
+.nav-links .navlink:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.nav-cta { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; color: var(--bg); background: var(--emerald); padding: 0.5rem 1rem; border-radius: 0.5rem; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; }
+.nav-cta:hover { transform: translateY(-0.06rem); box-shadow: 0 0.35rem 1.25rem rgba(52, 211, 153, 0.25); }
+
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 0.3rem; width: 2.1rem; height: 2.1rem; cursor: pointer; flex-shrink: 0; }
+.hamburger span { width: 1.4rem; height: 0.125rem; background: var(--text); display: block; margin: 0 auto; transition: transform 0.25s ease, opacity 0.2s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(0.44rem) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-0.44rem) rotate(-45deg); }
+
+.mobile-menu { display: none; flex-direction: column; background: var(--bg-panel); border-top: 0.06rem solid var(--border-soft); padding: 0.5rem 2rem 1.25rem; max-width: 73.75rem; margin: 0 auto; }
+.mobile-menu.open { display: flex; }
+.mobile-menu .mobilelink { padding: 0.9rem 0; font-size: 0.95rem; color: var(--text-muted); border-bottom: 0.06rem solid var(--border-soft); }
+.mobile-menu .mobilelink:hover { color: var(--text); }
+
+@media (max-width: 52.5rem) { .nav-links { display: none; } .hamburger { display: flex; } }
+@media (max-width: 30rem) { .nav-right .nav-cta { padding: 0.45rem 0.75rem; font-size: 0.75rem; } }
+@media (min-width: 52.6rem) { .mobile-menu { display: none !important; } }
+
+/* ==========================================================================
+   5. SECCIONES: HERO, MANIFIESTO & ECOSISTEMA
+   ========================================================================== */
+.hero { padding: 4.85rem 0 5rem; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; }
+@media (max-width: 60rem) { .hero { grid-template-columns: 1fr; padding: 3.5rem 0 3rem; gap: 2.75rem; } }
+.hero h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.08; margin-bottom: 1.4rem; }
+.hero h1 .accent { color: var(--emerald); }
+.hero p.sub { font-size: 1.06rem; color: var(--text-muted); max-width: 32.5rem; margin-bottom: 2.1rem; }
+.cta-row { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.trust-row, .floating-tags, .module-points { display: flex; flex-direction: column; }
+.trust-row { gap: 0.55rem; }
+.trust-row span { font-size: 0.85rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.55rem; }
+.trust-row span::before { content: "✓"; color: var(--emerald); font-weight: 700; font-family: var(--mono); }
+
+.term-card { background: var(--bg-panel); border: 0.06rem solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: 0 1.85rem 3.75rem -1.55rem rgba(0, 0, 0, 0.6); }
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-bottom: 0.06rem solid var(--border-soft); background: var(--bg-panel-2); }
+.term-bar .tdot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: #5c6579; }
+.term-bar .tlabel { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); margin-left: 0.5rem; }
+.term-body { padding: 1.4rem 1.25rem; font-family: var(--mono); font-size: 0.8rem; min-height: 9.4rem; }
+.term-line { color: var(--text-muted); margin-bottom: 0.6rem; opacity: 0; display: flex; gap: 0.5rem; }
+.term-line .tag-ok { color: var(--emerald); flex-shrink: 0; }
+.term-line.show { opacity: 1; }
+.term-cursor { display: inline-block; width: 0.45rem; height: 0.85rem; background: var(--emerald); animation: blink 1s step-end infinite; vertical-align: middle; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.chart-row { display: flex; align-items: flex-end; gap: 0.35rem; height: 3.5rem; padding: 0 1.25rem 1.25rem; }
+.chart-row .bar { flex: 1; background: linear-gradient(180deg, var(--cobalt), var(--emerald-dim)); border-radius: 0.2rem 0.2rem 0 0; transform: scaleY(0); transform-origin: bottom; transition: transform 0.6s ease; }
+.chart-row.show .bar { transform: scaleY(1); }
+.floating-tags { padding: 0 1.25rem 1.4rem; gap: 0.5rem; }
+.ftag { font-family: var(--mono); font-size: 0.72rem; background: var(--bg-panel-2); border: 0.06rem solid var(--border-soft); padding: 0.5rem 0.75rem; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.5rem; opacity: 0; transform: translateY(0.35rem); transition: opacity 0.5s, transform 0.5s; }
+.ftag.show { opacity: 1; transform: translateY(0); }
+.ftag::before { content: "●"; color: var(--emerald); font-size: 0.5rem; }
+
+.manifesto-grid { display: flex; flex-direction: column; align-items: center; gap: 2.75rem; }
+.manifesto-text { max-width: 43.75rem; text-align: center; margin: 0 auto; }
+.manifesto-text p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.25rem; }
+.manifesto-text .highlight { color: var(--text); font-weight: 500; }
+.pillars { display: flex; justify-content: center; gap: 1.1rem; width: 100%; flex-wrap: wrap; }
+.pillar { border: 0.06rem solid var(--border-soft); border-radius: 0.75rem; padding: 1.5rem 1.35rem; background: var(--bg-panel); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.85rem; flex: 1 1 16.25rem; max-width: 20rem; }
+.pillar .picon { width: 2.4rem; height: 2.4rem; border-radius: 0.55rem; background: var(--bg-panel-2); border: 0.06rem solid var(--border-soft); display: flex; align-items: center; justify-content: center; }
+.pillar h3 { font-size: 1.05rem; margin-bottom: 0.5rem; font-family: var(--body); font-weight: 600; }
+.pillar p { font-size: 0.9rem; color: var(--text-muted); }
+
+.modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.35rem; }
+@media (max-width: 56.25rem) { .modules-grid { grid-template-columns: 1fr; max-width: 32.5rem; } }
+.module-card { background: var(--bg-panel); border: 0.06rem solid var(--border-soft); border-radius: var(--radius); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; }
+.module-card:hover { border-color: var(--cobalt); transform: translateY(-0.2rem); }
+.module-tag { font-family: var(--mono); font-size: 0.72rem; color: var(--cobalt); background: rgba(91, 127, 255, 0.09); border: 0.06rem solid rgba(91, 127, 255, 0.22); padding: 0.25rem 0.6rem; border-radius: 0.35rem; display: inline-block; width: fit-content; margin-bottom: 1.1rem; }
+.module-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.module-focus { font-family: var(--mono); font-size: 0.75rem; color: var(--emerald); margin-bottom: 0.85rem; }
+.module-card > p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.1rem; }
+.module-points { gap: 0.85rem; margin-top: auto; }
+.module-points li { list-style: none; font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 0.55rem; }
+.module-points li .li-content { display: flex; flex-direction: column; gap: 0.2rem; }
+.module-points li strong { color: var(--text); font-weight: 600; }
+.module-points li::before { content: "✓"; color: var(--emerald); font-family: var(--mono); flex-shrink: 0; margin-top: 0.06rem; }
+
+/* ==========================================================================
+   6. INFRAESTRUCTURA, TRADUCTOR, FORMULARIO & FOOTER
+   ========================================================================== */
+.infra-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+@media (max-width: 56.25rem) { .infra-grid { grid-template-columns: repeat(2, 1fr); } }
+.infra-card { background: var(--bg-panel); border: 0.06rem solid var(--border-soft); border-radius: 0.75rem; padding: 1.4rem 1.25rem; }
+.infra-card .ilabel { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.infra-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; font-family: var(--body); font-weight: 600; }
+.infra-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+.mirror-list { display: flex; flex-direction: column; gap: 1rem; }
+.mirror-row { background: var(--bg-panel); border: 0.06rem solid var(--border-soft); border-radius: 0.75rem; padding: 1.6rem 1.75rem; cursor: pointer; transition: border-color 0.25s; }
+.mirror-row:hover, .mirror-row.active { border-color: var(--cobalt); }
+.mirror-hint { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; opacity: 1; transition: opacity 0.3s; }
+.mirror-row.active .mirror-hint { opacity: 0; }
+.mirror-swap { position: relative; min-height: 3.25rem; }
+.mirror-jargon, .mirror-benefit { position: absolute; top: 0; left: 0; width: 100%; transition: opacity 0.35s ease; line-height: 1.55; }
+.mirror-jargon { font-family: var(--mono); font-size: 0.875rem; color: var(--text-dim); background: linear-gradient(var(--terracotta), var(--terracotta)) 0 54%/0% 0.1rem no-repeat; transition: background-size 0.6s ease, opacity 0.35s ease 0.35s; }
+.mirror-row.active .mirror-jargon { background-size: 100% 0.1rem; opacity: 0; }
+.mirror-benefit { font-size: 0.95rem; color: var(--text); font-weight: 500; opacity: 0; transition: opacity 0.4s ease 0.55s; }
+.mirror-row.active .mirror-benefit { opacity: 1; }
+.mirror-benefit::before { content: "✓ "; color: var(--emerald); font-family: var(--mono); }
+
+.final-cta { text-align: center; padding: 6.25rem 0; background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(52,211,153,0.10), transparent 70%); }
+.final-cta h2 { color: var(--emerald); font-size: clamp(1.9rem, 4vw, 2.7rem); max-width: 45rem; margin: 0 auto 1.25rem; line-height: 1.15; }
+.final-cta p { color: var(--text-muted); font-size: 1.05rem; max-width: 35rem; margin: 0 auto 2.25rem; }
+.final-cta .cta-row { justify-content: center; }
+.final-cta .microtext { margin-top: 1.4rem; font-size: 0.8rem; color: var(--text-dim); font-family: var(--mono); }
+
+footer { 
+  border-top: 0.06rem solid var(--border-soft); 
+  padding: 2.5rem 0; 
+  font-family: var(--mono); 
+  font-size: 0.8rem; 
+  color: var(--text-dim); 
+}
+
+/* El nuevo contenedor centrado */
+.footer-container {
+  display: flex;
+  flex-direction: column; /* Apila el copyright arriba y los iconos abajo */
+  align-items: center;    /* Centrado horizontal */
+  justify-content: center;
+  gap: 1.1rem;            /* Espacio simétrico entre el texto y las redes */
+  text-align: center;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;            /* Un poco más de aire entre iconos */
+}
+
+.social-link {
+  color: var(--text-dim);
+  display: inline-flex;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.social-icon { 
+  width: 1.2rem; 
+  height: 1.2rem; 
+}
+
+.social-link:hover { 
+  color: var(--text); 
+  transform: translateY(-0.1rem); 
+}
+
+/* Comportamiento móvil ahora aplicado al wrap interno */
+@media (max-width: 37.5rem) { 
+  footer .wrap { 
+    flex-direction: column !important; 
+    gap: 1.2rem; 
+    text-align: center; 
+  } 
+}
+
+.form-citas-lab { max-width: 37.5rem; margin: 2.5rem auto; display: flex; flex-direction: column; gap: 1.25rem; background: var(--bg-panel-2); border: 0.06rem solid var(--border); padding: 2rem; border-radius: var(--radius); }
+.form-group-lab { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-grid-lab { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group-lab label { font-family: var(--mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.form-citas-lab input, .form-citas-lab textarea { background: var(--bg); border: 0.06rem solid var(--border); border-radius: 0.5rem; padding: 0.75rem 1rem; color: var(--text); font-family: var(--body); font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; box-sizing: border-box; }
+.form-citas-lab input:focus, .form-citas-lab textarea:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 0.2rem rgba(91, 127, 255, 0.15); }
+.form-citas-lab textarea { resize: vertical; }
+
+@media (max-width: 37.5rem) { .form-grid-lab { grid-template-columns: 1fr; } .form-citas-lab { padding: 1.25rem; margin: 1.5rem auto; } }
+
+/* ---------- BOTÓN FLOTANTE WHATSAPP ---------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background: #25d366;
+  color: #ffffff !important;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  overflow: hidden;
+  max-width: 60px; /* Estado inicial: Solo círculo */
+}
+
+/* Contenedor del icono para mantenerlo centrado siempre */
+.wa-icon-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wa-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Texto oculto inicialmente mediante max-width */
+.wa-text {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.25s ease, max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+  padding-left: 0;
+}
+
+/* INTERACCIÓN HOVER: Expansión horizontal corregida */
+.whatsapp-float:hover {
+  max-width: 320px; /* Incrementamos ligeramente para dar holgura */
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float:hover .wa-text {
+  opacity: 1;
+  max-width: 220px;
+  padding-left: 24px;   /* Espacio elegante al inicio (izquierda) */
+  padding-right: 12px;  /* ¡La solución! Espacio de respeto antes de tocar el icono */
+}
+
+/* Adaptación de contraste si el usuario está en el modo claro accesible */
+html.light-theme .whatsapp-float {
+  background: #128c7e; /* Un tono sutilmente más oscuro para mejor contraste en fondos claros */
+  box-shadow: 0 8px 24px rgba(18, 140, 126, 0.25);
+}
+html.light-theme .whatsapp-float:hover {
+  box-shadow: 0 12px 32px rgba(18, 140, 126, 0.4);
+}
+
+/* Comportamiento responsivo en móviles pequeños */
+@media (max-width: 480px) {
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+  }
+  /* En móviles omitimos la expansión hover para evitar romper toques accidentales */
+  .whatsapp-float:hover {
+    max-width: 60px;
+  }
+  .whatsapp-float:hover .wa-text {
+    display: none;
+  }
+}
