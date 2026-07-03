@@ -42,6 +42,16 @@ html.light-theme {
 html.light-theme .btn-primary { color: #ffffff !important; }
 html.light-theme .term-bar .tdot { background: #cbd5e1; }
 
+/* Soporte manual si se añade la clase .dark-theme a la etiqueta <html> */
+html.dark-theme {
+  --bg: #0f1420; --bg-panel: #161d2e; --bg-panel-2: #1c2438;
+  --border: #2a3348; --border-soft: #212a3d;
+  --text: #e9edf5; --text-muted: #8a94ab; --text-dim: #5c6579;
+  --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
+}
+html.dark-theme .btn-primary { color: #0a1510 !important; }
+html.dark-theme .term-bar .tdot { background: var(--border-soft); }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; min-width: 20rem; }
