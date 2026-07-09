@@ -105,9 +105,33 @@ section + section { border-top: 0.06rem solid var(--border-soft); }
    ========================================================================== */
 header { position: sticky; top: 0; z-index: 100; background: var(--bg-navbar); backdrop-filter: blur(0.6rem); border-bottom: 0.06rem solid var(--border-soft); }
 nav { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 2rem; max-width: 73.75rem; margin: 0 auto; line-height: 1.2; }
-.logo { font-family: var(--mono); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s; }
-.logo:hover { opacity: 0.8; }
-.logo .dot { color: var(--emerald); }
+/* 1. CONFIGURACIÓN DEL LOGO POR DEFECTO (FONDO CLARO) */
+/* 1. EL LOGO EN EL BOTÓN POR DEFECTO (FONDO CLARO) */
+button.logo {
+  width: 150px;               /* Ajusta al ancho real de tu logo */
+  height: 75px;               /* Ajusta al alto real de tu logo */
+  background-image: url('logo_zi.png'); /* Tu logo de 55 KB */
+  background-size: contain;   /* Se adapta sin deformarse */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent; /* Quita el fondo gris por defecto del botón */
+  border: none;               /* Quita el borde por defecto del botón */
+  cursor: pointer;            /* Hace que aparezca la mano al pasar el ratón */
+  transition: background-image 0.3s ease;
+  
+}
+button.logo:hover { opacity: 0.8; }
+button.logo .dot { color: var(--emerald); }
+/* 2. REEMPLAZO AUTOMÁTICO AL CAMBIAR A FONDO OSCURO */
+/* Cuando el body tenga la clase 'modo-oscuro', el botón cambiará de imagen */
+html.light-theme button.logo {
+  background-image: url('logo_zi2.png'); /* Tu logo alternativo */
+  
+}
+html.light-theme button.logo:hover { opacity: 0.8; }
+html.light-theme button.logo .dot { color: var(--cobalt); }
+
+
 .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--text-muted); }
 .nav-links .navlink:hover { color: var(--text); }
 .nav-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
