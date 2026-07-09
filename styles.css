@@ -120,16 +120,15 @@ button.logo {
   transition: background-image 0.3s ease;
   
 }
-button.logo:hover { opacity: 0.8; }
-button.logo .dot { color: var(--emerald); }
+
 /* 2. REEMPLAZO AUTOMÁTICO AL CAMBIAR A FONDO OSCURO */
 /* Cuando el body tenga la clase 'modo-oscuro', el botón cambiará de imagen */
 html.light-theme button.logo {
   background-image: url('logo_zi2.png'); /* Tu logo alternativo */
   
 }
-html.light-theme button.logo:hover { opacity: 0.8; }
-html.light-theme button.logo .dot { color: var(--cobalt); }
+button.logo:hover { opacity: 0.8; }
+button.logo .dot { color: var(--emerald); }
 
 
 .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--text-muted); }
