@@ -9,6 +9,7 @@
   --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
   --radius: 0.875rem;
   --mono: 'JetBrains Mono', monospace; --display: 'Space Grotesk', sans-serif; --body: 'Inter', sans-serif;
+  --logo-url: url('logo_zi.png');
 }
 
 /* Inyección Automática de Modo Claro por Accesibilidad */
@@ -25,6 +26,7 @@
     --emerald: #059669;     /* Esmeralda oscurecido para cumplir ratios de contraste WCAG en fondo claro */
     --cobalt: #2563eb;      /* Azul cobalto accesible */
     --terracotta: #c2410c;  /* Terracota accesible */
+    --logo-url: url('logo_zi2.png');
   }
   
   /* Ajuste específico de contraste para botones sobre fondo claro */
@@ -38,6 +40,7 @@ html.light-theme {
   --border: #ccd4e0; --border-soft: #e2e8f0;
   --text: #0f172a; --text-muted: #475569; --text-dim: #64748b;
   --emerald: #059669; --cobalt: #2563eb; --terracotta: #c2410c;
+  --logo-url: url('logo_zi2.png');
 }
 html.light-theme .btn-primary { color: #ffffff !important; }
 html.light-theme .term-bar .tdot { background: #cbd5e1; }
@@ -48,6 +51,7 @@ html.dark-theme {
   --border: #2a3348; --border-soft: #212a3d;
   --text: #e9edf5; --text-muted: #8a94ab; --text-dim: #5c6579;
   --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
+  --logo-url: url('logo_zi.png');
 }
 html.dark-theme .btn-primary { color: #0a1510 !important; }
 html.dark-theme .term-bar .tdot { background: var(--border-soft); }
@@ -110,7 +114,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 button.logo {
   width: 150px;               /* Ajusta al ancho real de tu logo */
   height: 75px;               /* Ajusta al alto real de tu logo */
-  background-image: url('logo_zi.png'); /* Tu logo de 55 KB */
+  background-image: var(--logo-url); /* Usa la variable para la imagen del logo */
   background-size: contain;   /* Se adapta sin deformarse */
   background-repeat: no-repeat;
   background-position: center;
@@ -124,7 +128,7 @@ button.logo {
 /* 2. REEMPLAZO AUTOMÁTICO AL CAMBIAR A FONDO OSCURO */
 /* Cuando el body tenga la clase 'modo-oscuro', el botón cambiará de imagen */
 html.light-theme button.logo {
-  background-image: url('logo_zi2.png'); /* Tu logo alternativo */
+  background-image: var(--logo-url); /* Tu logo alternativo */
   
 }
 button.logo:hover { opacity: 0.8; }
