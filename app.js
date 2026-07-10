@@ -206,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // --- ORQUESTACIÓN DE INICIALIZACIÓN ---
   initNavigation();
   initMobileMenu();
   initObservers();
@@ -216,26 +215,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('themeToggle');
   const htmlEl = document.documentElement;
 
-  // Recuperar la preferencia del usuario guardada localmente si existe
-  const savedTheme = localStorage.getItem('theme');
+  // 1. DEFINIR FUNCIÓN DE DETECCIÓN AUTOMÁTICA
+  function aplicarTemaAutomatico() {
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (prefersLight) {
+      htmlEl.classList.remove('dark-theme');
+      htmlEl.classList.add('light-theme');
+    } else {
+      htmlEl.classList.remove('light-theme');
+      htmlEl.classList.add('dark-theme');
+    }
+  }
+
+  // 2. EVALUAR AL CARGAR LA PÁGINA
+  // Cambiamos a 'sessionStorage' para que la elección manual no se quede "congelada" para siempre
+  const savedTheme = sessionStorage.getItem('theme');
+
   if (savedTheme === 'light') {
     htmlEl.classList.add('light-theme');
   } else if (savedTheme === 'dark') {
-    htmlEl.classList.add('dark-theme'); // Sobrescribe la detección automática si prefiere oscuro
+    htmlEl.classList.add('dark-theme');
+  } else {
+    // Si no hay acción manual en esta sesión, corre el modo automático puro
+    aplicarTemaAutomatico();
   }
 
+  // 3. ESCUCHAR CAMBIOS DEL SISTEMA EN TIEMPO REAL
+  // Si el celular pasa de día a noche automáticamente mientras la web está abierta, esto lo detecta
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!sessionStorage.getItem('theme')) { // Solo si el usuario no ha elegido manualmente
+      aplicarTemaAutomatico();
+    }
+  });
+
+  // 4. BOTÓN MANUAL
   themeToggleBtn.addEventListener('click', () => {
-    // Si ya está activo el modo claro, cambiamos a oscuro
-    if (htmlEl.classList.contains('light-theme') || 
-       (!htmlEl.classList.contains('dark-theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+    if (htmlEl.classList.contains('light-theme')) {
       htmlEl.classList.remove('light-theme');
       htmlEl.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
+      sessionStorage.setItem('theme', 'dark'); // Guarda solo para la sesión actual
     } else {
-      // De lo contrario, activamos el modo claro
       htmlEl.classList.remove('dark-theme');
       htmlEl.classList.add('light-theme');
-      localStorage.setItem('theme', 'light');
+      sessionStorage.setItem('theme', 'light');
     }
     
     // Forzamos el recálculo del alto en los módulos interactivos "mirror-rows" si es necesario
