@@ -7,9 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="logo_zi.png" type="image/png">
+<link rel="preload" as="image" href="logo_zi.png" type="image/png">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="styles.css?v=1.0.1">
+
 </head>
+
 <body>
 
 <header>
@@ -330,7 +334,47 @@
   </div>
 </a>
 
-<script src="app.js" defer></script>
+<script src="app.js" defer>
+  // --- ORQUESTACIÓN DE INICIALIZACIÓN ---
+  initNavigation();
+  initMobileMenu();
+  initObservers();
+  initMirrorRows();
+
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const htmlEl = document.documentElement;
+
+  // FUNCIÓN DE DETECCIÓN AUTOMÁTICA
+  function aplicarTemaAutomatico() {
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (prefersLight) {
+      htmlEl.classList.remove('dark-theme');
+      htmlEl.classList.add('light-theme');
+    } else {
+      htmlEl.classList.remove('light-theme');
+      htmlEl.classList.add('dark-theme');
+    }
+  }
+
+  // 1. SINCRONIZAR CLASES AL CARGAR (Para asegurar que el JS tenga la misma clase que el CSS activo)
+  aplicarTemaAutomatico();
+
+  // 2. ESCUCHAR CAMBIOS DEL SISTEMA EN TIEMPO REAL
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+    aplicarTemaAutomatico();           
+  });
+
+  // 3. BOTÓN MANUAL (Solo altera el estado actual, no guarda residuos)
+  themeToggleBtn.addEventListener('click', () => {
+    if (htmlEl.classList.contains('light-theme')) {
+      htmlEl.classList.remove('light-theme');
+      htmlEl.classList.add('dark-theme');
+    } else {
+      htmlEl.classList.remove('dark-theme');
+      htmlEl.classList.add('light-theme');
+    }
+  });
+</script>
 
 </body>
 </html>

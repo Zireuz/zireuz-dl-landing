@@ -1,73 +1,140 @@
 /* ==========================================================================
-   1. DESIGN SYSTEM, RESET & ACCESIBILIDAD (SOPORTE DE TEMA CLARO)
+   1. DESIGN SYSTEM & TEMAS (AUTOMÁTICO + CLASES MANUALES JS)
    ========================================================================== */
-:root {
-  /* Paleta Oscura (Por Defecto) */
-  --bg: #0f1420; --bg-panel: #161d2e; --bg-panel-2: #1c2438;
-  --border: #2a3348; --border-soft: #212a3d;
-  --text: #e9edf5; --text-muted: #8a94ab; --text-dim: #5c6579;
-  --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
+
+/* --- TEMA OSCURO (Por Defecto) --- */
+:root, 
+html.dark-theme {
+  /* Paleta Oscura */
+  --bg: #0f1420; 
+  --bg-panel: #161d2e; 
+  --bg-panel-2: #1c2438;
+  --border: #2a3348; 
+  --border-soft: #212a3d;
+  --text: #e9edf5; 
+  --text-muted: #8a94ab; 
+  --text-dim: #5c6579;
+  --emerald: #34d399; 
+  --emerald-dim: #1f7a5c; 
+  --cobalt: #5b7fff; 
+  --terracotta: #e0794f;
+  
+  /* Estructurales fijas */
   --radius: 0.875rem;
-  --mono: 'JetBrains Mono', monospace; --display: 'Space Grotesk', sans-serif; --body: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', monospace; 
+  --display: 'Space Grotesk', sans-serif; 
+  --body: 'Inter', sans-serif;
   --logo-url: url('logo_zi.png');
 }
 
-/* Inyección Automática de Modo Claro por Accesibilidad */
+/* Modificadores de componentes para Tema Oscuro */
+html.dark-theme .btn-primary { 
+  color: #0a1510 !important; 
+}
+html.dark-theme .term-bar .tdot { 
+  background: var(--border-soft); 
+}
+
+
+/* --- TEMA CLARO (Híbrido: Media Query + Clase Manual) --- */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f4f7fa;          /* Fondo principal claro y descansado */
-    --bg-panel: #ffffff;    /* Tarjetas puras blancas para contraste */
-    --bg-panel-2: #eef2f7;  /* Paneles secundarios o cabeceras de terminal */
-    --border: #ccd4e0;      /* Bordes visibles de alto contraste */
-    --border-soft: #e2e8f0; /* Separadores sutiles */
-    --text: #0f172a;        /* Texto principal casi negro (máxima legibilidad) */
-    --text-muted: #475569;  /* Texto secundario gris oscuro legible */
-    --text-dim: #64748b;    /* Textos internos o detalles */
-    --emerald: #059669;     /* Esmeralda oscurecido para cumplir ratios de contraste WCAG en fondo claro */
-    --cobalt: #2563eb;      /* Azul cobalto accesible */
-    --terracotta: #c2410c;  /* Terracota accesible */
+    --bg: #f4f7fa; 
+    --bg-panel: #ffffff; 
+    --bg-panel-2: #eef2f7;  
+    --border: #ccd4e0; 
+    --border-soft: #e2e8f0; 
+    --text: #0f172a; 
+    --text-muted: #475569; 
+    --text-dim: #64748b;    
+    --emerald: #059669; /* Ratio WCAG accesible */
+    --cobalt: #2563eb; 
+    --terracotta: #c2410c;  
     --logo-url: url('logo_zi2.png');
   }
-  
-  /* Ajuste específico de contraste para botones sobre fondo claro */
   .btn-primary { color: #ffffff !important; }
   .term-bar .tdot { background: #cbd5e1; }
 }
 
-/* Soporte manual si se añade la clase .light-theme a la etiqueta <html> */
+/* Duplicación estricta para el override de JS manual */
 html.light-theme {
-  --bg: #f4f7fa; --bg-panel: #ffffff; --bg-panel-2: #eef2f7;
-  --border: #ccd4e0; --border-soft: #e2e8f0;
-  --text: #0f172a; --text-muted: #475569; --text-dim: #64748b;
-  --emerald: #059669; --cobalt: #2563eb; --terracotta: #c2410c;
+  --bg: #f4f7fa; 
+  --bg-panel: #ffffff; 
+  --bg-panel-2: #eef2f7;
+  --border: #ccd4e0; 
+  --border-soft: #e2e8f0;
+  --text: #0f172a; 
+  --text-muted: #475569; 
+  --text-dim: #64748b;
+  --emerald: #059669; 
+  --cobalt: #2563eb; 
+  --terracotta: #c2410c;
   --logo-url: url('logo_zi2.png');
 }
 html.light-theme .btn-primary { color: #ffffff !important; }
 html.light-theme .term-bar .tdot { background: #cbd5e1; }
 
-/* Soporte manual si se añade la clase .dark-theme a la etiqueta <html> */
-html.dark-theme {
-  --bg: #0f1420; --bg-panel: #161d2e; --bg-panel-2: #1c2438;
-  --border: #2a3348; --border-soft: #212a3d;
-  --text: #e9edf5; --text-muted: #8a94ab; --text-dim: #5c6579;
-  --emerald: #34d399; --emerald-dim: #1f7a5c; --cobalt: #5b7fff; --terracotta: #e0794f;
-  --logo-url: url('logo_zi.png');
+
+/* ==========================================================================
+   2. RESET GENERAL & ESTILOS BASE
+   ========================================================================== */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
-html.dark-theme .btn-primary { color: #0a1510 !important; }
-html.dark-theme .term-bar .tdot { background: var(--border-soft); }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; min-width: 20rem; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; font-size: inherit; color: inherit; background: none; border: none; cursor: pointer; }
-img, svg { display: block; }
+html { 
+  scroll-behavior: smooth; 
+}
 
-:focus-visible { outline: 0.125rem solid var(--emerald); outline-offset: 0.2rem; border-radius: 0.25rem; }
+body { 
+  background: var(--bg); 
+  color: var(--text); 
+  font-family: var(--body); 
+  line-height: 1.6; 
+  overflow-x: hidden; 
+  min-width: 20rem; 
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
+
+button { 
+  font-family: inherit; 
+  font-size: inherit; 
+  color: inherit; 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+}
+
+img, 
+svg { 
+  display: block; 
+}
+
+
+/* ==========================================================================
+   3. ACCESIBILIDAD (FÓCUS & ANIMACIONES REDUCIDAS)
+   ========================================================================== */
+:focus-visible { 
+  outline: 0.125rem solid var(--emerald); 
+  outline-offset: 0.2rem; 
+  border-radius: 0.25rem; 
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { 
+    scroll-behavior: auto; 
+  }
+  * { 
+    animation-duration: 0.01ms !important; 
+    animation-iteration-count: 1 !important; 
+    transition-duration: 0.01ms !important; 
+  }
 }
 
 /* ==========================================================================
@@ -122,7 +189,8 @@ button.logo {
   border: none;               /* Quita el borde por defecto del botón */
   cursor: pointer;            /* Hace que aparezca la mano al pasar el ratón */
   transition: background-image 0.3s ease;
-  
+  image-rendering: -webkit-optimize-contrast; /* Renderizado rápido en móviles */
+  image-rendering: crisp-edges; /* Renderizado rápido en navegadores modernos */
 }
 
 /* 2. REEMPLAZO AUTOMÁTICO AL CAMBIAR A FONDO OSCURO */

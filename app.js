@@ -206,16 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+ // --- ORQUESTACIÓN DE INICIALIZACIÓN ---
   initNavigation();
   initMobileMenu();
   initObservers();
   initMirrorRows();
 
-  // Lógica de Accesibilidad: Alternancia manual de Modo Claro / Oscuro
   const themeToggleBtn = document.getElementById('themeToggle');
   const htmlEl = document.documentElement;
 
-  // 1. DEFINIR FUNCIÓN DE DETECCIÓN AUTOMÁTICA
   function aplicarTemaAutomatico() {
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     if (prefersLight) {
@@ -227,25 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 2. EVALUAR AL CARGAR LA PÁGINA
-  // Cambiamos a 'sessionStorage' para que la elección manual no se quede "congelada" para siempre
-  const savedTheme = sessionStorage.getItem('theme');
-
-  if (savedTheme === 'light') {
-    htmlEl.classList.add('light-theme');
-  } else if (savedTheme === 'dark') {
-    htmlEl.classList.add('dark-theme');
-  } else {
-    // Si no hay acción manual en esta sesión, corre el modo automático puro
-    aplicarTemaAutomatico();
-  }
+  // 🌟 (Aquí quitamos el bloque IF que evaluaba al cargar, ya lo hace el head)
 
   // 3. ESCUCHAR CAMBIOS DEL SISTEMA EN TIEMPO REAL
-  // Si el celular pasa de día a noche automáticamente mientras la web está abierta, esto lo detecta
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-    if (!sessionStorage.getItem('theme')) { // Solo si el usuario no ha elegido manualmente
-      aplicarTemaAutomatico();
-    }
+    sessionStorage.removeItem('theme'); 
+    aplicarTemaAutomatico();           
   });
 
   // 4. BOTÓN MANUAL
@@ -253,12 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (htmlEl.classList.contains('light-theme')) {
       htmlEl.classList.remove('light-theme');
       htmlEl.classList.add('dark-theme');
-      sessionStorage.setItem('theme', 'dark'); // Guarda solo para la sesión actual
+      sessionStorage.setItem('theme', 'dark');
     } else {
       htmlEl.classList.remove('dark-theme');
       htmlEl.classList.add('light-theme');
       sessionStorage.setItem('theme', 'light');
     }
+  
     
     // Forzamos el recálculo del alto en los módulos interactivos "mirror-rows" si es necesario
     if (typeof mirrorRows !== 'undefined') {
